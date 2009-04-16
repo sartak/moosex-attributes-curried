@@ -2,26 +2,12 @@
 use strict;
 use warnings;
 use Test::More tests => 3;
-
-do {
-    package My::Attributes;
-    use MooseX::Attribute::Curried (
-        has_str => [
-            isa => 'Str',
-        ],
-        has_int => {
-            isa     => 'Int',
-            default => 0,
-        },
-    );
-};
+use lib 't/lib';
 
 do {
     package Foo;
     use Moose;
-
-    # same file, can't use "use"
-    BEGIN { My::Attributes->import }
+    use MyAttrs;
 
     has_str name => (
         is => 'rw',
