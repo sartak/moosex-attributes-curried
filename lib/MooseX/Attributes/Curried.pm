@@ -102,5 +102,10 @@ further by specifying additional options on your import line, like so:
         },
     );
 
+=head1 SEE ALSO
+
+L<MooseX::Attribute::Prototype>, which has very similar goals; this
+extension was originally proposed as an implementation of prototype attributes.
+
 =cut
 
