@@ -21,11 +21,13 @@ sub import {
         my @defaults = ref($defaults) eq 'ARRAY' ? @$defaults : %$defaults;
 
         $keywords{$keyword} = sub {
+            my ($class, $arg, $opt, $funk) = @_;
             sub {
                 my $name = shift;
                 my %options = (
                     definition_context => _caller_info(),
                     @defaults,
+                    %$opt,
                     @_,
                 );
 
