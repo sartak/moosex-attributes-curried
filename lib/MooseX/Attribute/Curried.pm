@@ -22,12 +22,13 @@ sub import {
 
         $keywords{$keyword} = sub {
             my ($class, $arg, $opt) = @_;
+            my @customized_defaults = (@defaults, %$opt);
+
             sub {
                 my $name = shift;
                 my %options = (
                     definition_context => _caller_info(),
-                    @defaults,
-                    %$opt,
+                    @customized_defaults,
                     @_,
                 );
 
