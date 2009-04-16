@@ -18,11 +18,12 @@ sub import {
     my %keywords;
 
     while (my ($keyword, $defaults) = splice @_, 0, 2) {
-        my @defaults = ref($defaults) eq 'ARRAY' ? @$defaults : %$defaults;
+        ref($defaults) eq 'HASH'
+            or Carp::croak("The defaults for '$keyword' must be a hashref.");
 
         $keywords{$keyword} = sub {
             my ($class, $arg, $opt) = @_;
-            my @customized_defaults = (@defaults, %$opt);
+            my @customized_defaults = (%$defaults, %$opt);
 
             sub {
                 my $name = shift;
