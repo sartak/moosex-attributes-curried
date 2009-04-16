@@ -19,6 +19,8 @@ do {
 do {
     package Foo;
     use Moose;
+
+    # same file, can't use "use"
     BEGIN { My::Attributes->import }
 
     has_str name => (
