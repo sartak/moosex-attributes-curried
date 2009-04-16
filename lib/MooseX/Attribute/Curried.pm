@@ -52,3 +52,33 @@ sub import {
 
 1;
 
+__END__
+
+=head1 NAME
+
+MooseX::Attribute::Curried - curry your "has"es
+
+=head1 SYNOPSIS
+
+    package MyAttrs;
+    use MooseX::Attribute::Curried (
+        has_datetime => {
+            isa     => 'DateTime',
+            default => sub { DateTime->now },
+        },
+    );
+
+    package My::Class;
+    use Moose;
+    use MyAttrs;
+
+    has_datetime 'birthday' => (
+        is => 'ro',
+    );
+
+=head1 DESCRIPTION
+
+This module lets you define curried versions of L<Moose/has>.
+
+=cut
+
