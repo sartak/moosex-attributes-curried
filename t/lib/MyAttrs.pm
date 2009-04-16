@@ -1,5 +1,5 @@
 package MyAttrs;
-use MooseX::Attribute::Curried (
+use MooseX::Attributes::Curried (
     has_str => {
         isa => 'Str',
     },

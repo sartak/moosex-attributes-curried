@@ -1,4 +1,4 @@
-package MooseX::Attribute::Curried;
+package MooseX::Attributes::Curried;
 use strict;
 use warnings;
 use Sub::Exporter 'setup_exporter';
@@ -56,12 +56,12 @@ __END__
 
 =head1 NAME
 
-MooseX::Attribute::Curried - curry your "has"es
+MooseX::Attributes::Curried - curry your "has"es
 
 =head1 SYNOPSIS
 
     package MyAttrs;
-    use MooseX::Attribute::Curried (
+    use MooseX::Attributes::Curried (
         has_datetime => {
             isa     => 'DateTime',
             default => sub { DateTime->now },
