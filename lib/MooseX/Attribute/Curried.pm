@@ -38,9 +38,9 @@ sub import {
     }
 
     setup_exporter({
-        into => scalar(caller),
+        into    => scalar(caller),
         exports => [%keywords],
-        groups => {
+        groups  => {
             default => [keys %keywords],
         },
     });
