@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 4;
+use Test::More tests => 6;
 use lib 't/lib';
 
 do {
@@ -22,9 +22,15 @@ do {
     default_str 'confound';
 };
 
-ok(Foo->meta->get_attribute('name')->is_required, 'needs_str: required');
-is(Foo->meta->get_attribute('confound')->default, '', 'default_str: default');
+my $name = Foo->meta->get_attribute('name');
+my $confound = Foo->meta->get_attribute('confound');
 
-ok(!Foo->meta->get_attribute('confound')->is_required, 'default_str: not required');
-ok(!Foo->meta->get_attribute('name')->has_default, 'needs_str: no default');
+is($name->type_constraint, 'Str', 'needs_str isa has_str');
+is($confound->type_constraint, 'Str', 'default_str isa has_str');
+
+ok($name->is_required, 'needs_str: required');
+is($confound->default, '', 'default_str: default');
+
+ok(!$confound->is_required, 'default_str: not required');
+ok(!$name->has_default, 'needs_str: no default');
 
