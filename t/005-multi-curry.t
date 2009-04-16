@@ -9,7 +9,7 @@ do {
     use Moose;
     use MyAttrs (
         has_str => {
-            -as => 'default_str',
+            -as     => 'default_str',
             default => '',
         },
         has_str => {
