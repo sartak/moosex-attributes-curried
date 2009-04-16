@@ -1,7 +1,7 @@
 package MooseX::Attributes::Curried;
 use strict;
 use warnings;
-use Sub::Exporter 'setup_exporter';
+use Sub::Exporter build_exporter => { -as => '_build_exporter' };
 
 # taken from Moose.pm, but level has been subtracted by one due to less
 # indirection
@@ -12,9 +12,7 @@ sub _caller_info {
     return \%info;
 }
 
-sub import {
-    shift;
-
+sub build_exporter {
     my %keywords;
 
     while (my ($keyword, $defaults) = splice @_, 0, 2) {
@@ -41,13 +39,22 @@ sub import {
         };
     }
 
-    setup_exporter({
-        into    => scalar(caller),
+    return _build_exporter({
         exports => [%keywords],
         groups  => {
             default => [keys %keywords],
         },
     });
+}
+
+sub import {
+    shift;
+    my $exporter = build_exporter(@_);
+
+    my $caller = caller;
+
+    no strict 'refs';
+    *{ $caller . '::import' } = $exporter;
 }
 
 1;
