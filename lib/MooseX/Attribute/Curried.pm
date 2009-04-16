@@ -35,7 +35,7 @@ sub import {
 
                 my $attrs = (ref($name) eq 'ARRAY') ? $name : [$name];
 
-                my $meta = Class::MOP::Class->initialize(caller);
+                my $meta = Class::MOP::class_of(caller);
                 $meta->add_attribute($_, %options) for @$attrs;
             },
         };
