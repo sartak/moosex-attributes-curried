@@ -21,7 +21,7 @@ sub import {
         my @defaults = ref($defaults) eq 'ARRAY' ? @$defaults : %$defaults;
 
         $keywords{$keyword} = sub {
-            my ($class, $arg, $opt, $funk) = @_;
+            my ($class, $arg, $opt) = @_;
             sub {
                 my $name = shift;
                 my %options = (
