@@ -66,6 +66,9 @@ MooseX::Attribute::Curried - curry your "has"es
             isa     => 'DateTime',
             default => sub { DateTime->now },
         },
+        has_rw => {
+            is => 'rw',
+        },
     );
 
     package My::Class;
@@ -76,9 +79,28 @@ MooseX::Attribute::Curried - curry your "has"es
         is => 'ro',
     );
 
+    has_rw 'age' => (
+        isa => 'Int',
+    );
+
 =head1 DESCRIPTION
 
-This module lets you define curried versions of L<Moose/has>.
+This module lets you define curried versions of L<Moose/has>. If many of your
+attributes share the same options, especially across multiple classes, then you
+can refactor those options away into a curried C<has>.
+
+Typical usage of this extension is to create a standalone "C<has> library"
+module. If you only need a curried C<has> for one class, then you might as
+well just define a C<sub has_datetime { has(...) }> in that class.
+
+When you use your "C<has> library", you can customize each curried C<has>
+further by specifying additional options on your import line, like so:
+
+    use MyAttrs (
+        has_datetime => {
+            is => 'ro',
+        },
+    );
 
 =cut
 
