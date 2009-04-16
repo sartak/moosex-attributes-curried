@@ -107,6 +107,10 @@ further by specifying additional options on your import line, like so:
         has_datetime => {
             is => 'ro',
         },
+        has_datetime => {
+            -as      => 'needs_datetime',
+            required => 1,
+        },
     );
 
 =head1 SEE ALSO
