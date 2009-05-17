@@ -1,4 +1,7 @@
 0.02
+     The "default" values can be code references now. Since they get the
+        parameter lists, this greatly increases expressive power. See
+        t/007-smart-has.t for an example.
      Allow more fine-grained control over building an exporter for composition
          with Moose::Exporter and other exporters.
 
