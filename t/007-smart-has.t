@@ -38,7 +38,7 @@ do {
 };
 
 can_ok(Foo => qw(seen mark has_seen));
-can_ok(Foo => qw(time _set_time));
+can_ok(Foo => qw(time _set_time)); # created by virtual option "private => 1"
 
 my $seen = Foo->meta->get_attribute('seen');
 my $age  = Foo->meta->get_attribute('age');
