@@ -16,18 +16,23 @@ sub build_exporter {
     my %keywords;
 
     while (my ($keyword, $defaults) = splice @_, 0, 2) {
-        ref($defaults) eq 'HASH'
-            or Carp::croak("The defaults for '$keyword' must be a hashref.");
+        ref($defaults) eq 'HASH' || ref($defaults) eq 'CODE'
+            or Carp::croak("The defaults for '$keyword' must be a hashref or a coderef.");
 
         $keywords{$keyword} = sub {
             my ($class, $arg, $opt) = @_;
-            my @customized_defaults = (%$defaults, %$opt);
 
             sub {
                 my $name = shift;
                 my %options = (
                     definition_context => _caller_info(),
-                    @customized_defaults,
+                    %{
+                        ref($defaults) eq 'CODE' ? do {
+                            local $_ = $name;
+                            $defaults->([@_], $opt),
+                        } : $defaults
+                    },
+                    %$opt,
                     @_,
                 );
 
