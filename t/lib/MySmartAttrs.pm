@@ -83,7 +83,7 @@ use MooseX::Attributes::Curried (
             );
         }
 
-        return \%extra;
+        return { %args, %extra };
     },
 );
 

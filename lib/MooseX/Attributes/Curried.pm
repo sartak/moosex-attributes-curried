@@ -28,14 +28,10 @@ sub build_exporter {
                 my $name = shift;
                 my %options = (
                     definition_context => _caller_info(),
-                    %{
-                        ref($defaults) eq 'CODE' ? do {
-                            local $_ = $name;
-                            $defaults->([@_], $opt),
-                        } : $defaults
-                    },
-                    %$opt,
-                    @_,
+                    (ref($defaults) eq 'CODE' ? do {
+                        local $_ = $name;
+                        %{ $defaults->([@_], $opt) },
+                    } : (%$defaults, %$opt, @_)),
                 );
 
                 my $attrs = (ref($name) eq 'ARRAY') ? $name : [$name];
