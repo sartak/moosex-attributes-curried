@@ -6,7 +6,7 @@ name     'MooseX-Attributes-Curried';
 all_from 'lib/MooseX/Attributes/Curried.pm';
 githubmeta;
 
-requires 'Moose'         => 0.74;
+requires 'Moose'         => 0.84;
 requires 'Sub::Exporter' => 0.01;
 
 WriteAll;
