@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Sub::Exporter build_exporter => { -as => '_build_exporter' };
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 # taken from Moose.pm, but level has been subtracted by one due to less
 # indirection
