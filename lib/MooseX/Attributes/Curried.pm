@@ -117,10 +117,10 @@ further by specifying additional options on your import line, like so:
     );
 
 Your "defaults" for the attribute can also be a code reference. This code
-reference will receive both the parameters directly provided for the attribute,
-as well as any additional specializations performed when the curried attribute
-was imported (at which time it can be further curried). This is immensely
-powerful, see F<t/007-smart-has.t> for a taste.
+reference will receive both the additional specializations performed when
+the curried attribute was imported, as well as any additional specializations
+used in the individual attribute. This is immensely powerful, see
+F<t/007-smart-has.t> for a taste.
 
 =head1 SEE ALSO
 
