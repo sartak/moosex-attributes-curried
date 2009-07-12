@@ -30,7 +30,7 @@ sub build_exporter {
                     definition_context => _caller_info(),
                     (ref($defaults) eq 'CODE' ? do {
                         local $_ = $name;
-                        %{ $defaults->([@_], $opt) },
+                        %{ $defaults->($opt, [@_]) },
                     } : (%$defaults, %$opt, @_)),
                 );
 

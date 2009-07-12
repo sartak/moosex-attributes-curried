@@ -4,11 +4,15 @@ use MooseX::Attributes::Curried (
         if (/^\w$/) {
             return {
                 isa => 'Int',
+                %{$_[0]},
+                @{$_[1]},
             };
         }
         else {
             return {
                 isa => 'Str',
+                %{$_[0]},
+                @{$_[1]},
             };
         }
     },

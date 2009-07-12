@@ -58,7 +58,7 @@ do {
 
 use MooseX::Attributes::Curried (
     xhas => sub {
-        my %args = (%{ $_[1] }, @{ $_[0] });
+        my %args = (%{ $_[0] }, @{ $_[1] });
         my %extra;
 
         if ($args{provides}) {
